@@ -8,7 +8,7 @@ version: "3"
 x-uffizzi:
   ingress:
     service: ohmyform
-    port: 5200
+    port: 3000
 
 services:
   redis:
@@ -20,7 +20,7 @@ services:
       CREATE_ADMIN: "TRUE"
       MAILER_URI: smtp://mail:1025
       DATABASE_DRIVER: postgres
-      DATABASE_URL: postgresql://root:root@db:5432/ohmyform
+      DATABASE_URL: postgresql://root:root@localhost:5432/ohmyform
       LOGIN_NOTE: "login with root:root!"
       SECRET_KEY: 12345
     links:
@@ -28,7 +28,7 @@ services:
       - redis
       - mail
     ports:
-      - "5200:3000"
+      - "3000:3000"
     depends_on:
       - db
       - redis
@@ -36,7 +36,7 @@ services:
   mail:
     image: mailhog/mailhog
     ports:
-      - "5051:8025"
+      - "8025:8025"
 
   db:
     image: postgres:10-alpine
