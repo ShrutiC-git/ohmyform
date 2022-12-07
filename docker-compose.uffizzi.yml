@@ -2,7 +2,7 @@
 
 # to use a version that is prebuilt copy one of the entries from the examples folder!
 
-version: "3"
+version: '3'
 
 # uffizzi integration
 x-uffizzi:
@@ -11,24 +11,25 @@ x-uffizzi:
     port: 3000
 
 services:
+
   redis:
     image: redis
 
   ohmyform:
     image: "${OHMYFORM_IMAGE}"
     environment:
-      CREATE_ADMIN: "TRUE"
+      - CREATE_ADMIN=true
       # MAILER_URI: smtp://mail:1025
       # DATABASE_DRIVER: postgres
       # DATABASE_URL: postgresql://root:root@localhost:5432/ohmyform
-      LOGIN_NOTE: "login with root:root!"
-      SECRET_KEY: 12345
+      - LOGIN_NOTE=login with root:root!
+      - SECRET_KEY=12345
     # links:
     #   - db
     #   - redis
     #   - mail
-    ports:
-      - "3000:3000"
+    # ports:
+    #   - "3000:3000"
     # depends_on:
     #   - db
     #   - redis
