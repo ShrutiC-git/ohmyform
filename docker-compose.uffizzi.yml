@@ -24,6 +24,10 @@ services:
       # DATABASE_URL: postgresql://root:root@localhost:5432/ohmyform
       - LOGIN_NOTE=login with root:root!
       - SECRET_KEY=12345
+    deploy:
+      resources:
+        limits:
+          memory: 1000M
     # links:
     #   - db
     #   - redis
