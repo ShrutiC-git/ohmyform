@@ -19,10 +19,11 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
 
-#      - name: Download submodules
-#        run: |
-#          git submodule update --init --recursive
-#          git submodule update --recursive --remote
+      - name: Download submodules
+        run: |
+          git submodule update --init --recursive
+          git submodule update --recursive --remote
+          ls
 
       - name: Generate UUID image name
         id: uuid
