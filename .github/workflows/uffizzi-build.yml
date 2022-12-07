@@ -17,6 +17,9 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
 
+      - name: Download submodules
+        run: git submodule update --init
+
       - name: Generate UUID image name
         id: uuid
         run: echo "UUID_WORKER=$(uuidgen)" >> $GITHUB_ENV
