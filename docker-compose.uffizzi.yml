@@ -18,34 +18,34 @@ services:
     image: "${OHMYFORM_IMAGE}"
     environment:
       CREATE_ADMIN: "TRUE"
-      MAILER_URI: smtp://mail:1025
-      DATABASE_DRIVER: postgres
-      DATABASE_URL: postgresql://root:root@localhost:5432/ohmyform
+      # MAILER_URI: smtp://mail:1025
+      # DATABASE_DRIVER: postgres
+      # DATABASE_URL: postgresql://root:root@localhost:5432/ohmyform
       LOGIN_NOTE: "login with root:root!"
       SECRET_KEY: 12345
-    links:
-      - db
-      - redis
-      - mail
+    # links:
+    #   - db
+    #   - redis
+    #   - mail
     ports:
       - "3000:3000"
-    depends_on:
-      - db
-      - redis
+    # depends_on:
+    #   - db
+    #   - redis
 
-  mail:
-    image: mailhog/mailhog
-    ports:
-      - "8025:8025"
+  # mail:
+  #   image: mailhog/mailhog
+  #   ports:
+  #     - "8025:8025"
 
-  db:
-    image: postgres:10-alpine
-    volumes:
-      - PG_VOLUME:/var/lib/postgresql/data
-    environment:
-      POSTGRES_USER: root
-      POSTGRES_PASSWORD: root
-      POSTGRES_DB: ohmyform
+  # db:
+  #   image: postgres:10-alpine
+  #   volumes:
+  #     - PG_VOLUME:/var/lib/postgresql/data
+  #   environment:
+  #     POSTGRES_USER: root
+  #     POSTGRES_PASSWORD: root
+  #     POSTGRES_DB: ohmyform
 
 volumes:
   PG_VOLUME:
