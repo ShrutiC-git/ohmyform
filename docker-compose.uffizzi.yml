@@ -44,7 +44,7 @@ services:
     entrypoint: /bin/sh
     command:
          - "-c"
-         - "ENDPOINT=$$UFFIZZI_URL/graphql"
+         - "ENDPOINT=$$UFFIZZI_URL/graphql yarn --cwd ui"
     deploy:
       resources:
         limits:
