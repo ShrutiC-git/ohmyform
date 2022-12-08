@@ -7,7 +7,7 @@ version: '3'
 # uffizzi integration
 x-uffizzi:
   ingress:
-    service: ohmyform
+    service: ui
     port: 8080
 
 services:
