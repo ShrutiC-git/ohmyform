@@ -36,7 +36,7 @@ services:
   ui:
     image: "${OHMYFORM_UI_IMAGE}"
     environment:
-      # - ENDPOINT=http://localhost:8090/graphql
+      - ENDPOINT=http://localhost:8090/graphql
       # - SERVER_ENDPOINT=http://api:5001/graphql
       - PORT=5000
     ports:
