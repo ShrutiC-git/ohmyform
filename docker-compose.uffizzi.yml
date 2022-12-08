@@ -13,6 +13,7 @@ x-uffizzi:
 services:
   redis:
     image: redis
+
   db:
     image: postgres:10-alpine
     volumes:
@@ -21,16 +22,18 @@ services:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: root
       POSTGRES_DB: ohmyform
-    restart: unless-stopped
+    # restart: unless-stopped
+
   ui:
     image: "${OHMYFORM_UI_IMAGE}"
     environment:
       ENDPOINT: http://localhost:8090/graphql
       SERVER_ENDPOINT: http://api:5000/graphql
       PORT: 5000
-    ports:
-      - "8080:5000"
-    restart: unless-stopped
+    # ports:
+    #   - "8080:5000"
+    # restart: unless-stopped
+
   api:
     image: "{OHMYFORM_API_IMAGE}"
     environment:
@@ -43,8 +46,8 @@ services:
       MAILER_URI: smtp://local.host
       REDIS_URL: redis://redis
       PORT: 5000
-    ports:
-      - "8090:5000"
+    # ports:
+    #   - "8090:5000"
 
 volumes:
    PG_VOLUME:
