@@ -37,15 +37,13 @@ services:
     image: "${OHMYFORM_UI_IMAGE}"
     environment:
       # - ENDPOINT=http://localhost:8090/graphql
-      - SERVER_ENDPOINT=http://api:5001/graphql
+      # - SERVER_ENDPOINT=http://api:5001/graphql
       - PORT=5000
-    ports:
-      - "8080:5000"
     working_dir: /ui
     entrypoint: ["/bin/sh","-c"]
     command:
          - "npm install"
-         - "ENDPOINT=$$UFFIZZI_URL/graphql yarn start:dev"
+         - "ENDPOINT=$$UFFIZZI_URL/graphql yarn start"
     deploy:
       resources:
         limits:
@@ -70,8 +68,6 @@ services:
       resources:
         limits:
           memory: 1000M
-    ports:
-      - "8090:5001"
 
 volumes:
    pg_data:
