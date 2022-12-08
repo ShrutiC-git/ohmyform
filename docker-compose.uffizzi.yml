@@ -64,9 +64,6 @@ services:
     command:
          - "-c"
          - "yarn start"
-    # links:
-    #   - db
-      # - redis
     deploy:
       resources:
         limits:
