@@ -39,11 +39,10 @@ services:
       # - ENDPOINT=http://localhost:8090/graphql
       # - SERVER_ENDPOINT=http://api:5001/graphql
       - PORT=5000
-    working_dir: /ui
-    entrypoint: ["/bin/sh","-c"]
+    # working_dir: /ui
+    entrypoint: /bin/sh
     command:
-         - "sudo apt-get npm -y"
-         - "sudo npm install"
+         - "-c"
          - "ENDPOINT=$$UFFIZZI_URL/graphql yarn start"
     deploy:
       resources:
