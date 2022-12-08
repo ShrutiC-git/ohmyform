@@ -55,7 +55,7 @@ services:
     image: "${OHMYFORM_API_IMAGE}"
     environment:
       - CREATE_ADMIN=true
-      # - ADMIN_EMAIL=admin@local.host
+      - ADMIN_EMAIL=admin@local.host
       - ADMIN_USERNAME=admin
       - ADMIN_PASSWORD=admin
       - DATABASE_DRIVER=postgres
