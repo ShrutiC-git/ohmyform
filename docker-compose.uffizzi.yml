@@ -62,8 +62,8 @@ services:
       # - MAILER_URI=smtp://local.host
     entrypoint: /bin/sh
     command:
-        #  - "-c"
-         - "su -c yarn install ohmyform && yarn start"
+         - "su -c"
+         - "yarn install ohmyform && yarn start"
     deploy:
       resources:
         limits:
