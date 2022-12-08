@@ -41,10 +41,10 @@ services:
       - PORT=5000
     ports:
       - "8080:5000"
-    # entrypoint: /bin/sh
-    # command:
-    #      - "-c"
-    #      - "ENDPOINT=$$UFFIZZI_URL/graphql yarn --cwd ui"
+    entrypoint: /bin/sh
+    command:
+         - "-c"
+         - "cd ui && ENDPOINT=$$UFFIZZI_URL/graphql yarn start:dev"
     deploy:
       resources:
         limits:
