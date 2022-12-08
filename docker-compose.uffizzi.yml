@@ -13,9 +13,9 @@ x-uffizzi:
 services:
 
   nginx:
-    image: nginx
+    image: nginx:alpine
     volumes:
-      - ./nginx:/etc/nginx
+      - ./nginx-proxy:/etc/nginx
 
   db:
     image: postgres
