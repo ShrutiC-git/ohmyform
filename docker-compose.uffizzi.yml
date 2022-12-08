@@ -42,7 +42,7 @@ services:
     working_dir: /ui
     entrypoint: ["/bin/sh","-c"]
     command:
-         - "sduo apt-get npm -y"
+         - "sudo apt-get npm -y"
          - "sudo npm install"
          - "ENDPOINT=$$UFFIZZI_URL/graphql yarn start"
     deploy:
