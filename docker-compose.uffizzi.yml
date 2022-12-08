@@ -46,6 +46,9 @@ services:
       MAILER_URI: smtp://local.host
       REDIS_URL: redis://redis
       PORT: 5000
+    links:
+      - db
+      - redis
     # ports:
     #   - "8090:5000"
 
