@@ -63,7 +63,7 @@ services:
     entrypoint: /bin/sh
     command:
          - "-c"
-         - "yarn start"
+         - "yarn install && yarn start"
     deploy:
       resources:
         limits:
