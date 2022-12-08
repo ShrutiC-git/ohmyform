@@ -52,7 +52,7 @@ services:
       - ADMIN_PASSWORD=admin
       - DATABASE_DRIVER=postgres
       - DATABASE_URL=postgresql://root:root@localhost:5432/ohmyform
-      - MAILER_URI=smtp://local.host
+      # - MAILER_URI=smtp://local.host
       - PORT=5001
     # links:
     #   - db
