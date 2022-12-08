@@ -110,6 +110,7 @@ jobs:
           export OHMYFORM_UI_IMAGE
           OHMYFORM_API_IMAGE=${{ needs.build-ohmyform-api.outputs.tags }}
           export OHMYFORM_API_IMAGE
+          export UFFIZZI_URL=\$UFFIZZI_URL
           # Render simple template from environment variables.
           envsubst < docker-compose.uffizzi.yml > docker-compose.rendered.yml
           cat docker-compose.rendered.yml
