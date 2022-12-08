@@ -60,10 +60,10 @@ services:
       - DATABASE_DRIVER=postgres
       - DATABASE_URL=postgresql://root:root@localhost:5432/ohmyform
       # - MAILER_URI=smtp://local.host
-    entrypoint: /bin/sh
-    command:
-         - "su -c"
-         - "yarn install ohmyform && yarn start"
+    # entrypoint: /bin/sh
+    # command:
+    #      - "su -c"
+    #      - "yarn install ohmyform && yarn start"
     deploy:
       resources:
         limits:
