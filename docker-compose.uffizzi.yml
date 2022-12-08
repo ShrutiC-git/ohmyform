@@ -48,7 +48,6 @@ services:
       resources:
         limits:
           memory: 1000M
-    # restart: unless-stopped
 
   api:
     image: "${OHMYFORM_API_IMAGE}"
