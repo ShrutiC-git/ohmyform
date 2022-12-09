@@ -15,7 +15,7 @@ services:
   nginx:
     image: nginx:alpine
     volumes:
-      - ./nginx-proxy/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx-proxy:/etc/nginx
 
   db:
     image: postgres
