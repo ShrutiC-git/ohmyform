@@ -1,0 +1,130 @@
+# WARNING!! This is to build from source
+
+# to use a version that is prebuilt copy one of the entries from the examples folder!
+
+version: '3'
+
+# uffizzi integration
+x-uffizzi:
+  ingress:
+    service: nginx
+    port: 8081
+
+services:
+
+  nginx:
+    image: nginx:alpine
+    volumes:
+      - ./nginx-proxy:/etc/nginx
+
+  db:
+    image: postgres
+    volumes:
+      - pg_data:/var/lib/postgresql
+    ports:
+        - "5432:5432"
+    deploy:
+            resources:
+              limits:
+                memory: 1000M
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=ohmyform
+    # restart: unless-stopped
+
+  ui:
+    image: "${OHMYFORM_UI_IMAGE}"
+    # environment:
+      # - ENDPOINT=http://localhost:8090/graphql
+      # - SERVER_ENDPOINT=http://api:5001/graphql
+      # - PORT=5000
+    # working_dir: /ui
+    entrypoint: /bin/sh
+    command:
+         - "-c"
+         - "ENDPOINT=$$UFFIZZI_URL/graphql SERVER_ENDPOINT=$$UFFIZZI_URL/graphql yarn start"
+    deploy:
+      resources:
+        limits:
+          memory: 1000M
+    # restart: unless-stopped
+
+  api:
+    image: "${OHMYFORM_API_IMAGE}"
+    environment:
+      - CREATE_ADMIN=true
+      - ADMIN_EMAIL=admin@admin.com
+      - ADMIN_USERNAME=admin
+      - ADMIN_PASSWORD=admin
+      - DATABASE_DRIVER=postgres
+      - DATABASE_URL=postgresql://root:root@localhost:5432/ohmyform
+      # - MAILER_URI=smtp://local.host
+    # entrypoint: /bin/sh
+    # command:
+    #      - "su -c"
+    #      - "yarn install ohmyform && yarn start"
+    deploy:
+      resources:
+        limits:
+          memory: 1000M
+
+volumes:
+   pg_data:
+
+
+# services:
+
+#   redis:
+#     image: redis
+
+#   ohmyform:
+#     image: "${OHMYFORM_IMAGE}"
+#     environment:
+#       CREATE_ADMIN: "TRUE"
+#       ADMIN_EMAIL: admin@local.host
+#       ADMIN_USERNAME: admin
+#       ADMIN_PASSWORD: admin
+#       DATABASE_DRIVER: postgres
+#       DATABASE_URL: "postgresql://root:root@localhost:5432/ohmyform"
+#       MAILER_URI: smtp://mail:1025
+#       LOGIN_NOTE: "Either login with admin:admin or create your own account to test OhMyForm"
+#     ports:
+#       - "8080:3000"
+#     # environment:
+#     #   - CREATE_ADMIN=true
+#     #   - MAILER_URI=smtp://mail:1025
+#     #   - DATABASE_DRIVER=postgres
+#     #   - DATABASE_URL=postgresql://root:root@localhost:5432/ohmyform
+#     #   - LOGIN_NOTE=login with root:root!
+#     #   - SECRET_KEY=12345
+#     deploy:
+#       resources:
+#         limits:
+#           memory: 1000M
+#     # links:
+#     #   - db
+#     #   - redis
+#     #   - mail
+#     # ports:
+#     #   - "3000:3000"
+#     # depends_on:
+#     #   - db
+#     #   - redis
+
+#   mail:
+#     image: mailhog/mailhog
+#     ports:
+#       - "8025:8025"
+
+#   db:
+#     image: postgres:10-alpine
+#     volumes:
+#       - PG_VOLUME:/var/lib/postgresql/data
+#     environment:
+#       - POSTGRES_USER=root
+#       - POSTGRES_PASSWORD=root
+#       - POSTGRES_DB=ohmyform
+
+# volumes:
+#   PG_VOLUME:
