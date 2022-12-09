@@ -12,6 +12,9 @@ x-uffizzi:
 
 services:
 
+  redis:
+    image: redis
+
   nginx:
     image: nginx:alpine
     volumes:
@@ -59,6 +62,7 @@ services:
       - ADMIN_PASSWORD=admin
       - DATABASE_DRIVER=postgres
       - DATABASE_URL=postgresql://root:root@localhost:5432/ohmyform
+      - REDIS_URL=redis://localhost:6379
       # - MAILER_URI=smtp://local.host
     # entrypoint: /bin/sh
     # command:
