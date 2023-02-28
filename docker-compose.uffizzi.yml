@@ -36,7 +36,7 @@ services:
     entrypoint: /bin/sh
     command:
          - "-c"
-         - "ENDPOINT=$$UFFIZZI_URL/graphql SERVER_ENDPOINT=$$UFFIZZI_URL/graphql yarn"
+         - "ENDPOINT=$$UFFIZZI_URL/graphql SERVER_ENDPOINT=$$UFFIZZI_URL/graphql yarn start"
     deploy:
       resources:
         limits:
@@ -44,14 +44,14 @@ services:
 
   api:
     image: "${OHMYFORM_API_IMAGE}"
-    environment:
-      - CREATE_ADMIN=true
-      - ADMIN_EMAIL=admin@admin.com
-      - ADMIN_USERNAME=admin
-      - ADMIN_PASSWORD=admin
-      - DATABASE_DRIVER=postgres
-      - DATABASE_URL=postgresql://root:root@localhost:5432/ohmyform
-      - REDIS_URL=redis://localhost:6379
+#    environment:
+#      - CREATE_ADMIN=true
+#      - ADMIN_EMAIL=admin@admin.com
+#      - ADMIN_USERNAME=admin
+#      - ADMIN_PASSWORD=admin
+#      - DATABASE_DRIVER=postgres
+#      - DATABASE_URL=postgresql://root:root@localhost:5432/ohmyform
+#      - REDIS_URL=redis://localhost:6379
     deploy:
       resources:
         limits:
